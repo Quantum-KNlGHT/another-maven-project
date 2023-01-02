@@ -21,6 +21,14 @@ pipeline {
 			}
 		}
 		
+
+		stage('Maven Package'){
+			steps{
+				echo 'Project packaging stage'
+				bat label: 'Project packaging', script: '''mvn package'''
+			}
+		}
+		
 		stage('Generate Cucumber report') {
             steps{
                  cucumber buildStatus: 'UNSTABLE',
@@ -34,13 +42,6 @@ pipeline {
                           ]
                       ]
                   }
-         }
-
-		stage('Maven Package'){
-			steps{
-				echo 'Project packaging stage'
-				bat label: 'Project packaging', script: '''mvn package'''
-			}
-		} 
+         } 
   	}
 }
