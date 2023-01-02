@@ -14,6 +14,12 @@ pipeline {
 				bat label: 'Test running', script: '''mvn test'''      
        		}
    		}
+   		
+   		stage('Jacoco Coverage Report') {
+        	steps{
+            	jacoco()
+			}
+		}
 
 		stage('Maven Package'){
 			steps{
